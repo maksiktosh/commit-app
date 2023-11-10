@@ -3,12 +3,12 @@ entries:
   basic-chart:
   - apiVersion: v2
     appVersion: 0.1.0
-    created: "2023-11-10T08:24:51.085237196Z"
+    created: "2023-11-10T08:47:25.717560789Z"
     description: A Helm chart for Kubernetes
-    digest: 5880d5ebe8dc3ad72d0c99a1c730dd2a213c267497021f14d648a43a20a98cf2
+    digest: bbccc58899adcd59f2507d1841f23a99e4ef8357f90a9683264697fa9175d705
     name: basic-chart
     type: application
     urls:
     - basic-chart-0.1.0.tgz
     version: 0.1.0
-generated: "2023-11-10T08:24:51.084663612Z"
+generated: "2023-11-10T08:47:25.716966175Z"
