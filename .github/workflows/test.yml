@@ -21,7 +21,7 @@ jobs:
            python-version: '3.10'
       - run: pip install bump2version
 
-      - name: bump
+      - name: Bump
         run: |
           git config --global user.email "mitkaua@gmail.com"
           git config --global user.name "FanscrmBot"
@@ -29,6 +29,7 @@ jobs:
           new_version=$(cat VERSION)
           echo "New version $new_version"
           cat VERSION
+          echo $new_version
 #      - name: Helm install
 #        env :
 #          HELM_USER: ${{ secrets.HELM_USER }}
