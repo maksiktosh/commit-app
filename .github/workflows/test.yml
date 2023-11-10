@@ -19,8 +19,10 @@ jobs:
 #          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
       - name: bump
-        run: |
-          bumpversion patch
+      - name: FragileTech/bump-version
+        uses: FragileTech/bump-version@main
+      - run: |
+          bump2version patch
           new_version=$(cat VERSION)
           echo "New version $new_version"
           cat VERSION
