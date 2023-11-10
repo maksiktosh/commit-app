@@ -18,10 +18,13 @@ jobs:
 #        with:
 #          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
+      - uses: actions/setup-python@v4
+        with:
+           python-version: '3.10'
+      - run: pip install bump2version
+
       - name: bump
         run: |
-          python3-pip install
-          pip install bump2version
           bump2version patch
           new_version=$(cat VERSION)
           echo "New version $new_version"
