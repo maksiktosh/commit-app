@@ -20,7 +20,7 @@ jobs:
 
       - name: bump
         run: |
-          bump2version patch
+          bumpversion patch
           new_version=$(cat VERSION)
           echo "New version $new_version"
           cat VERSION
