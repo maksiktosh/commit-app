@@ -1,0 +1,10 @@
+{{- if .Values.enableConfigmap | default false -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.default_name }}-vars
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
+data:
+{{ toYaml .Values.env | indent 2 }}
+{{- end }}

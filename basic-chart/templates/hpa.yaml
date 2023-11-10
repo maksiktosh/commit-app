@@ -1,0 +1,17 @@
+{{- if .Values.enablePodAutoscaling | default false -}}
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ .Values.default_name }}
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
+spec:
+  scaleTargetRef:
+    apiVersion: {{ .Values.autoscaling.apiversion }}
+    kind: {{ .Values.autoscaling.kind }}
+    name: {{ .Values.default_name }}-pod
+  minReplicas: {{ .Values.autoscaling.minReplicas | default "1" }}
+  maxReplicas: {{ .Values.autoscaling.maxReplicas | default "3"}}
+  metrics:
+    {{- toYaml .Values.autoscaling.metrics | nindent 4 }}
+{{- end }}

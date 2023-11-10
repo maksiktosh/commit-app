@@ -1,0 +1,150 @@
+#enableDeployment: true
+#enableConfigmap: true
+#enablePersistentVolumeClaim: true
+#enableService: true
+#enableService2: true
+#enableIngress: true
+#enableServiceAccount: true
+#enableCronjob: true
+#enableSecret: true
+#enablePodAutoscaling: true
+default_name: ""
+
+labels: {}
+annotations: {}
+
+## deployment ##
+deployment:
+  replicaCount: 0 #(default "1")
+  podAnnotations: {}
+  imagePullSecrets: []
+  securityContext: {}
+  volumes: []
+  nodeSelector: {}
+  tolerations: []
+  affinity: {}
+
+## containers ##
+name: "" #(default "default_name")
+image: "" #repository:tag
+imagePullPolicy: ""
+args: []
+ports:
+#  - name: 
+#    containerPort: 
+#    protocol: TCP
+#    targetPort: 
+container_env: []
+command: []
+resources: {}
+securityContext: {}
+volumeMounts: []
+#envFrom: 
+#livenessProbe:
+#  failureThreshold: 2
+#  httpGet:
+#    path: /
+#    port: 80
+#    scheme: HTTP
+#  initialDelaySeconds: 60
+#  periodSeconds: 20
+#  successThreshold: 1
+#  timeoutSeconds: 2
+#readinessProbe:
+#  failureThreshold: 2
+#  httpGet:
+#    path: /
+#    port: 80
+#    scheme: HTTP
+#  initialDelaySeconds: 60
+#  periodSeconds: 20
+#  successThreshold: 1
+#  timeoutSeconds: 2
+
+## configmap ##
+env: {}
+
+## Persistent Volume Claims ##
+pvc:
+  name: []
+  accessModes: [] #(default "ReadWriteOnce")
+   # - ReadWriteMany
+  className: [] #(default "gp2")
+  storage: [] #(default "100Mi")
+
+## service ##
+service:
+  annotations: {}
+  #type: ClusterIP
+  ports:
+    - name: ""
+      port: 0
+      targetPort: ""
+      protocol: ""
+
+## service two ##
+service2:
+  name: []
+  labels: {}
+  annotations: {}
+  selector: {}
+  #type: ClusterIP
+  ports:
+    - name: ""
+      port: 0
+      targetPort: ""
+      protocol: ""
+
+## ingress ##
+ingress:
+  name: []
+  annotations: {}
+  tls:
+    - hosts:
+        - example.com
+      secretName: ""
+  className: []
+  rules: []
+
+## serviceAccount ##
+#serviceAccount:
+
+## cronjob ##
+cronjob:
+  name: []
+  schedule: [] # "*/10 * * * *"
+  successfulJobsHistoryLimit: 0 #(default "1")
+  failedJobsHistoryLimit: 0 #(default "1")
+  containers:
+    - name: ""
+      image: "" #repository:tag
+      imagePullPolicy: "" # IfNotPresent
+      command: []
+       # - '/bin/sh'
+       # - '-c'
+       # - 'node ./tools/closePolls.js'
+      envFrom:
+        - configMapRef:
+            name: ""
+  #restartPolicy: "" #(default "OnFailure")
+
+## secret ##
+secret:
+  name: []
+  type: ""
+  data: {}
+
+## autoscaling ##
+autoscaling:
+  apiversion: ""
+  kind: ""
+  #minReplicas: 0 #(default "1")
+  #maxReplicas: 0 #(default "3")
+  metrics:
+    - type: ""
+      resource:
+        name: ""
+        target:
+          type: ""
+          averageUtilization: 0
+          

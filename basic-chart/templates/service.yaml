@@ -1,0 +1,16 @@
+{{- if .Values.enableService | default false -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.default_name }}
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
+  annotations:
+    {{- toYaml .Values.annotations | nindent 4 }}
+spec:
+  selector:
+    {{- toYaml .Values.labels | nindent 4 }}
+  type: {{ .Values.service.type }}
+  ports: 
+    {{- toYaml .Values.service.ports | nindent 4 }}
+{{- end }}

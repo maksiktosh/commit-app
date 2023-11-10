@@ -1,0 +1,15 @@
+{{- if .Values.enablePersistentVolumeClaim | default false -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ .Values.pvc.name }}
+  labels:
+    name: {{ .Values.pvc.name }}
+spec:
+  accessModes:
+    {{ toYaml .Values.pvc.accessModes | default "ReadWriteOnce" }}
+  storageClassName: {{ .Values.pvc.className | default "gp2" }}
+  resources:
+    requests:
+      storage: {{ .Values.pvc.storage | default "100Mi" }}
+{{- end }}

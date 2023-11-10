@@ -1,0 +1,22 @@
+{{- if .Values.enableCronjob | default false -}}
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ .Values.cronjob.name }}
+  labels:
+    {{- toYaml .Values.labels | nindent 4 }}
+spec:
+  schedule: "{{ .Values.cronjob.schedule }}"
+  successfulJobsHistoryLimit: {{ .Values.cronjob.successfulJobsHistoryLimit | default "1" }}
+  failedJobsHistoryLimit: {{ .Values.cronjob.failedJobsHistoryLimit | default "1" }}
+  jobTemplate:
+    spec:
+      template:
+        metadata:
+          labels:
+            app: {{ .Values.cronjob.name }}
+        spec:
+          containers:
+            {{- toYaml .Values.cronjob.containers | nindent 12 }}
+          restartPolicy: {{ .Values.cronjob.restartPolicy | default "OnFailure" }}
+{{- end }}
