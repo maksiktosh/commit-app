@@ -32,7 +32,7 @@ jobs:
           
       - name: Test
         env:
-          NEW_VERSION: $$new_version
+          NEW_VERSION: $(cat VERSION)
         run: echo test${{ env.NEW_VERSION }}
 #      - name: Helm install
 #        env :
