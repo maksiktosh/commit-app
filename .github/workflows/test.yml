@@ -33,4 +33,3 @@ jobs:
           git add index.yaml *.tgz
           git commit -m "Update chart index"
           git push
-
