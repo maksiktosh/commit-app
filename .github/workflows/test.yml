@@ -18,7 +18,6 @@ jobs:
 #        with:
 #          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-      - name: bump
       - name: FragileTech/bump-version
         uses: FragileTech/bump-version@main
       - run: |
