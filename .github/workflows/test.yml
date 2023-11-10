@@ -17,7 +17,13 @@ jobs:
         uses: actions/checkout@v2
 #        with:
 #          GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        
+
+      - name: bump
+        run: |
+          bump2version patch
+          new_version=$(cat VERSION)
+          echo "New version $new_version"
+          cat VERSION
 #      - name: Helm install
 #        env :
 #          HELM_USER: ${{ secrets.HELM_USER }}
