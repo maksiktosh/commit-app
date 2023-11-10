@@ -29,7 +29,6 @@ jobs:
         run: |
           git config --global user.email "maksiktosh@gmail.com"
           git config --global user.name "maksiktosh"
-          git clone https://${{ secrets.TOKEN }}@github.com/fanscrm-dev/infra.git
           helm repo index .
           git add index.yaml *.tgz
           git commit -m "Update chart index"
