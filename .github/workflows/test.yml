@@ -1,0 +1,36 @@
+name: "Helm package"
+
+on:
+  push:
+    branches:
+      - main
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+#      - name: Helm install
+#        env :
+#          HELM_USER: ${{ secrets.HELM_USER }}
+#          HELM_TOKEN: ${{ secrets.HELM_TOKEN }}
+#        run: |
+#          helm repo add crm-helms --username ${HELM_USER} --password ${HELM_TOKEN} "https://raw.githubusercontent.com/fanscrm-dev/infra/main/"
+#          helm repo update
+#          helm repo list
+#          helm search repo crm-helms
+          
+      - name: Update chart messaging-service
+        run: helm package basic-chart
+
+      - name: Update Index
+        run: |
+          git config --global user.email "maksiktosh@gmail.com"
+          git config --global user.name "maksiktosh"
+          git clone https://${{ secrets.TOKEN }}@github.com/fanscrm-dev/infra.git
+          helm repo index .
+          git add index.yaml *.tgz
+          git commit -m "Update chart index"
+          git push
