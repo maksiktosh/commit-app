@@ -31,9 +31,9 @@ jobs:
           cat VERSION
           
       - name: Test
-        env:
-          NEW_VERSION: $(cat VERSION)
-        run: echo test${{ env.NEW_VERSION }}
+        run: |
+          new_version=$(cat VERSION)
+          echo test$new_version
 #      - name: Helm install
 #        env :
 #          HELM_USER: ${{ secrets.HELM_USER }}
