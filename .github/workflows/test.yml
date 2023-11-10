@@ -29,6 +29,7 @@ jobs:
           new_version=$(cat VERSION)
           echo "New version $new_version"
           cat VERSION
+          git push
           
       - name: Test
         run: |
