@@ -18,9 +18,10 @@ jobs:
 #        with:
 #          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-      - name: FragileTech/bump-version
-        uses: FragileTech/bump-version@main
-      - run: |
+      - name: bump
+        run: |
+          apt install python3-pip
+          pip install bump2version
           bump2version patch
           new_version=$(cat VERSION)
           echo "New version $new_version"
