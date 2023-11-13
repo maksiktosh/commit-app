@@ -1,0 +1,51 @@
+name: "Create cluster with terraform"
+
+on:
+  push:
+    paths:
+      - 'crm-tf/**'
+
+#env:
+#  working-directory: cluster
+  
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: crm-tf
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - run: ls -la
+      
+      - name: 'Authenticate to AWS for spaces backend'
+        id: 'auth'
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      
+#      - name: Install doctl
+#        uses: digitalocean/action-doctl@v2
+#        with:
+#          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+#        with:
+#          terraform_version: ${{ env.terraform_version }}
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+#      - name: Terraform Validate
+#        id: validate
+#        run: terraform validate -no-color
+#        
+#      - name: Terraform Plan
+#        id: plan
+#        run: terraform plan
+#        continue-on-error: true
