@@ -2,8 +2,10 @@ name: "Helm package"
 
 on:
   push:
-    paths:
-      - 'helm-charts/basic-chart/**'
+    branches:
+      - main
+#    paths:
+#      - 'helm-charts/basic-chart/**'
 
 permissions: write-all
 
