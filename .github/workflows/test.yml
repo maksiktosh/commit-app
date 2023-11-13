@@ -39,7 +39,7 @@ jobs:
           echo "New version $new_version"
           cat VERSION
           git push
-          echo "version=$(cat VERSION) >> "$GITHUB_OUTPUT"
+          echo "version=$(cat VERSION)" >> "$GITHUB_OUTPUT"
         continue-on-error: true
           
       - name: Test
