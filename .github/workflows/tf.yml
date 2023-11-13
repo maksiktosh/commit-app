@@ -2,8 +2,10 @@ name: "Create cluster with terraform"
 
 on:
   push:
-    paths:
-      - 'crm-tf/**'
+    branches:
+      - main
+#    paths:
+#      - 'crm-tf/**'
 
 #env:
 #  working-directory: cluster
@@ -21,25 +23,26 @@ jobs:
       
       - name: 'Authenticate to AWS for spaces backend'
         id: 'auth'
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+#        uses: aws-actions/configure-aws-credentials@v2
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} --profile digitalocean
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} --profile digitalocean
+          aws configure set aws-region: ${{ secrets.AWS_REGION }} --profile digitalocean
+          export AWS_PROFILE=digitalocean
       
 #      - name: Install doctl
 #        uses: digitalocean/action-doctl@v2
 #        with:
 #          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
       
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v2
+#      - name: Setup Terraform
+#        uses: hashicorp/setup-terraform@v2
 #        with:
 #          terraform_version: ${{ env.terraform_version }}
 
-      - name: Terraform Init
-        id: init
-        run: terraform init
+#      - name: Terraform Init
+#        id: init
+#        run: terraform init
 
 #      - name: Terraform Validate
 #        id: validate
