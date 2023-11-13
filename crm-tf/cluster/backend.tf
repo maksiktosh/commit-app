@@ -13,7 +13,10 @@ terraform {
 }
 
 provider "digitalocean" {
-  token = "dop_v1_c702d461d3405fdd7d1a022b05a0626976e755af203370f91559dcff5b74b549"
+  token = "${{ secrets.TERRAFORM_TOKEN }}"
+  spaces_access_id  = "${{ secrets.AWS_ACCESS_KEY_ID }}"
+  spaces_secret_key = "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+  spaces_endpoint   = "https://sfo3.digitaloceanspaces.com"
 }
 
 terraform {
