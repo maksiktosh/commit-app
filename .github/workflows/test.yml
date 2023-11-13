@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - ls -la
+      - run: ls -la
 #        with:
 #          GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
