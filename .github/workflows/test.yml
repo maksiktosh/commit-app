@@ -37,7 +37,7 @@ jobs:
           echo "New version $new_version"
           cat VERSION
           git push
-          echo "$new_version" >> "$NEW_VERSION"
+          echo "new_version" >> "$NEW_VERSION"
           
       - name: Test
         env:
