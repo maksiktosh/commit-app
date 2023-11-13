@@ -28,7 +28,6 @@ jobs:
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} --profile digitalocean
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} --profile digitalocean
           aws configure set aws-region: ${{ secrets.AWS_REGION }} --profile digitalocean
-          export AWS_PROFILE=digitalocean
       
 #      - name: Install doctl
 #        uses: digitalocean/action-doctl@v2
@@ -52,5 +51,7 @@ jobs:
         
       - name: Terraform Plan
         id: plan
-        run: terraform plan
+        run: |
+          export AWS_PROFILE=digitalocean
+          terraform plan
 #        continue-on-error: true
