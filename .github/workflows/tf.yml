@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: crm-tf
+        working-directory: crm-tf/cluster
     steps:
       - name: Checkout
         uses: actions/checkout@v2
