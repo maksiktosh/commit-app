@@ -13,6 +13,8 @@ jobs:
     defaults:
       run:
         working-directory: helm-charts
+    outputs:
+      output: ${{ steps.version.outputs.$new_version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -26,6 +28,7 @@ jobs:
       - run: pip install bump2version
 
       - name: Bump
+        id: version
         run: |
           git config --global user.email "mitkaua@gmail.com"
           git config --global user.name "FanscrmBot"
@@ -34,11 +37,14 @@ jobs:
           echo "New version $new_version"
           cat VERSION
           git push
+          echo "$new_version" >> "$NEW_VERSION"
           
       - name: Test
+        env:
+          OUTPUT: ${{outputs.output}}
         run: |
           new_version=$(cat VERSION)
-          echo test$new_version
+          echo test$OUTPUT
 #      - name: Helm install
 #        env :
 #          HELM_USER: ${{ secrets.HELM_USER }}
