@@ -42,7 +42,9 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: terraform init
+        run: |
+          export AWS_PROFILE=digitalocean
+          terraform init
 
       - name: Terraform Validate
         id: validate
