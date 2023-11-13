@@ -2,8 +2,8 @@ name: "Create cluster with terraform"
 
 on:
   push:
-    branches:
-      - main
+#    branches:
+#      - main
 #    paths:
 #      - 'crm-tf/**'
 
