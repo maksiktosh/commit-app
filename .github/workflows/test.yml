@@ -40,6 +40,7 @@ jobs:
           cat VERSION
           git push
           echo "new_version" >> "$NEW_VERSION"
+        continue-on-error: true
           
       - name: Test
 #        env:
