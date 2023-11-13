@@ -67,13 +67,3 @@ variable "token" {
   type        = string
   default     = "dop_v1_c702d461d3405fdd7d1a022b05a0626976e755af203370f91559dcff5b74b549"
 }
-
-variable "access" {
-  type        = string
-  default     = "DO00VBGM34WB7K82UJHM"
-}
-
-variable "secret" {
-  type        = string
-  default     = "pFo9iT9m/xlB+ZBRyQJG3ZnQamHRdhHgai3Hkk6trTc"
-}
