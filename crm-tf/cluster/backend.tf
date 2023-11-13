@@ -13,7 +13,7 @@ terraform {
 }
 
 provider "digitalocean" {
-  token = "dop_v1_c702d461d3405fdd7d1a022b05a0626976e755af203370f91559dcff5b74b549"
+  token = "dop_v1_0e14b750ec5dfb4475697588d241596e01a819f5c9d11b2f1305e081d89f94e1"
 }
 
 terraform {
