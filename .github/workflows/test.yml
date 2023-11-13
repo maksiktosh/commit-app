@@ -36,17 +36,13 @@ jobs:
           git config --global user.name "FanscrmBot"
           bump2version patch
           new_version=$(cat VERSION)
-          echo "New version $new_version"
-          cat VERSION
-          git push
+          echo "New patch version - $new_version"
+          echo "version in VERSION" && cat VERSION
           echo "version=$(cat VERSION)" >> "$GITHUB_OUTPUT"
-        continue-on-error: true
+          git push
           
       - name: Test
-#        env:
-#          OUTPUT: ${{outputs.output}}
         run: |
-          new_version=$(cat VERSION)
           echo test${{ steps.version.outputs.version }}
 #      - name: Helm install
 #        env :
