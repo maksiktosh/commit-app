@@ -1,0 +1,64 @@
+variable "cluster_name" {
+  type        = string
+  default     = "crm-k8s"
+}
+
+variable "cluster_region" {
+  type        = string
+  default     = "sfo3"
+}
+
+variable "cluster_version" {
+  type        = string
+  default     = "1.28.2-do.0"
+}
+
+variable "cluster_ha" {
+  type        = bool
+  default     = false
+}
+
+variable "cluster_tags" {
+  type        = set(string)
+  default     = ["shared", "crm-k8s", "terraformed", "k8s"]
+}
+
+variable "node_name" {
+  type        = string
+  default     = "crm-basic"
+}
+
+variable "node_size" {
+  type        = string
+  default     = "s-2vcpu-4gb"
+}
+
+variable "node_autoscale" {
+  type        = bool
+  default     = true
+}
+
+variable "node_min_nodes" {
+  type        = string
+  default     = 1
+}
+
+variable "node_max_nodes" {
+  type        = string
+  default     = 2
+}
+
+variable "node_labels" {
+  type        = map(string)
+  default     = {"project" = "crm", "project_name" = "crm"}
+}
+
+variable "node_tags" {
+  type        = set(string)
+  default     = ["project_crm", "project_name_crm", "terraformed", "k8s"]
+}
+
+variable "vpc_name" {
+  type        = string
+  default     = "default-sfo3"
+}
