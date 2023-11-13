@@ -15,8 +15,8 @@ jobs:
     defaults:
       run:
         working-directory: helm-charts
-    outputs:
-      output: ${{ steps.version.outputs.version }}
+#    outputs:
+#      output: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
