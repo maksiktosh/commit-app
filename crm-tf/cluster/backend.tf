@@ -13,9 +13,9 @@ terraform {
 }
 
 provider "digitalocean" {
-  token = "${{ secrets.TERRAFORM_TOKEN }}"
-  spaces_access_id  = "${{ secrets.AWS_ACCESS_KEY_ID }}"
-  spaces_secret_key = "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+  token = var.token
+  spaces_access_id  = var.access
+  spaces_secret_key = var.secret
   spaces_endpoint   = "https://sfo3.digitaloceanspaces.com"
 }
 

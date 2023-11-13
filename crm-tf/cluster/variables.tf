@@ -62,3 +62,18 @@ variable "vpc_name" {
   type        = string
   default     = "default-sfo3"
 }
+
+variable "token" {
+  type        = string
+  default     = "${{ secrets.TERRAFORM_TOKEN }}"
+}
+
+variable "access" {
+  type        = string
+  default     = "${{ secrets.AWS_ACCESS_KEY_ID }}"
+}
+
+variable "secret" {
+  type        = string
+  default     = "${{ secrets.AWS_SECRET_ACCESS_KEY }}"
+}
