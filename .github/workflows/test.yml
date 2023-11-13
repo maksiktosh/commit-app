@@ -2,8 +2,8 @@ name: "Helm package"
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - 'helm-charts/**'
 
 permissions: write-all
 
