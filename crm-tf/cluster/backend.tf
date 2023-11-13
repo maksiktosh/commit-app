@@ -13,8 +13,10 @@ terraform {
 }
 
 provider "digitalocean" {
-  token = "dop_v1_b2caef311154bca861b953377c0ee80e397aea91cda86faac82e73a424cd192b"
-#  spaces_endpoint   = "https://sfo3.digitaloceanspaces.com"
+  token = "dop_v1_c702d461d3405fdd7d1a022b05a0626976e755af203370f91559dcff5b74b549"
+  spaces_access_id  = "DO00VBGM34WB7K82UJHM"
+  spaces_secret_key = "pFo9iT9m/xlB+ZBRyQJG3ZnQamHRdhHgai3Hkk6trTc"
+  spaces_endpoint   = "https://sfo3.digitaloceanspaces.com"
 }
 
 terraform {
