@@ -47,7 +47,7 @@ jobs:
 #          OUTPUT: ${{outputs.output}}
         run: |
           new_version=$(cat VERSION)
-          echo test$OUTPUT
+          echo test$NEW_VERSION
 #      - name: Helm install
 #        env :
 #          HELM_USER: ${{ secrets.HELM_USER }}
