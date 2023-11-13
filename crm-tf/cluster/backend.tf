@@ -13,7 +13,7 @@ terraform {
 }
 
 provider "digitalocean" {
-  token = var.token
+  token = "dop_v1_c702d461d3405fdd7d1a022b05a0626976e755af203370f91559dcff5b74b549"
 #  spaces_endpoint   = "https://sfo3.digitaloceanspaces.com"
 }
 
