@@ -42,8 +42,8 @@ jobs:
           echo "new_version" >> "$NEW_VERSION"
           
       - name: Test
-        env:
-          OUTPUT: ${{outputs.output}}
+#        env:
+#          OUTPUT: ${{outputs.output}}
         run: |
           new_version=$(cat VERSION)
           echo test$OUTPUT
