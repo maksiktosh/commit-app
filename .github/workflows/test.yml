@@ -37,7 +37,7 @@ jobs:
           bump2version patch
           new_version=$(cat VERSION)
           echo "New patch version - $new_version"
-          echo "version in VERSION" && cat VERSION
+          echo "version in VERSION:" && cat VERSION
           echo "version=$(cat VERSION)" >> "$GITHUB_OUTPUT"
           git push
           
