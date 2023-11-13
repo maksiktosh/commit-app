@@ -14,7 +14,7 @@ terraform {
 
 provider "digitalocean" {
   token = var.token
-  spaces_endpoint   = "https://sfo3.digitaloceanspaces.com"
+#  spaces_endpoint   = "https://sfo3.digitaloceanspaces.com"
 }
 
 terraform {
