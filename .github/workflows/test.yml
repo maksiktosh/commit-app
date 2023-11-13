@@ -3,7 +3,7 @@ name: "Helm package"
 on:
   push:
     paths:
-      - 'helm-charts/**'
+      - 'helm-charts/basic-chart/**'
 
 permissions: write-all
 
