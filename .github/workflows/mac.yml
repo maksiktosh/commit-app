@@ -1,1 +1,54 @@
+name: "Build and Deploy Macos Application"
 
+on:
+  push:
+    branches:
+      - build-macos
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Install the Apple certificate and provisioning profile
+        run: |
+          cd ~/Library/Keychains/
+          #mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          #echo "$MACOS_CERTIFICATE" | base64 --decode > apple-app-dev-cert.p12
+          #security create-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
+          #security list-keychains -s ~/Library/Keychains/build.keychain
+          #security unlock-keychain -p "$KEYCHAIN_PASSWORD" ~/Library/Keychains/build.keychain
+          #security default-keychain -s ~/Library/Keychains/build.keychain
+          #security import apple-app-dev-cert.p12 -k ~/Library/Keychains/build.keychain -P "$MACOS_CERTIFICATE_PASSWORD" -T /usr/bin/codesign
+          #security list-keychains -s ~/Library/Keychains/build.keychain
+          #security default-keychain -s ~/Library/Keychains/build.keychain
+          #echo $RUNNER_TEMP
+          #cp "/path/to/your/provisioning-profile.mobileprovision" ~/Library/MobileDevice/Provisioning\ Profiles/
+          # create variables
+          #CERTIFICATE_PATH=$RUNNER_TEMP/build_certificate.p12
+          #PROFILE_PATH=$RUNNER_TEMP/build_pp.provisionprofile
+          #KEYCHAIN_PATH=$RUNNER_TEMP/app-signing.keychain-db
+
+          # import certificate and provisioning profile from secrets
+          #echo -n "$MACOS_CERTIFICATE" | base64 --decode -o $CERTIFICATE_PATH
+          #echo -n "$MACOS_PROFILE" | base64 --decode -o $PROFILE_PATH
+          #cd ./backend-app
+          #git checkout build-macos
+          #ls -la
+          #gpg --quiet --batch --yes --decrypt --passphrase="$MACOS_PROFILE" \
+          #--output apple-app-dev-profile.developerprofile apple-app-dev-profile.developerprofile.gpg
+          #ls -la
+          #cp apple-app-dev-profile.developerprofile ~/Library/MobileDevice/Provisioning\ Profiles/
+          #git checkout main
+
+          # create temporary keychain
+          #security create-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+          #security set-keychain-settings -lut 21600 $KEYCHAIN_PATH
+          #security unlock-keychain -p "$KEYCHAIN_PASSWORD" $KEYCHAIN_PATH
+
+          # import certificate to keychain
+          #security import $CERTIFICATE_PATH -P "$MACOS_CERTIFICATE_PASSWORD" -A -t cert -f pkcs12 -k $KEYCHAIN_PATH
+          #security list-keychain -d user -s $KEYCHAIN_PATH
+
+          # apply provisioning profile
+          #mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
+          #cp $PROFILE_PATH ~/Library/MobileDevice/Provisioning\ Profiles
