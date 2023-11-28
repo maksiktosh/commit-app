@@ -15,6 +15,9 @@ jobs:
       - name: Install the Apple certificate and provisioning profile
         run: |
           security create-keychain -p "$KP" build.keychain
+          security default-keychain -s ~/Library/Keychains/build.keychain
+          security unlock-keychain -p "$KP" ~/Library/Keychains/build.keychain
+          security list-keychains -s ~/Library/Keychains/build.keychain
           cd ~/Library/Keychains/
           ls -la
           #mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
