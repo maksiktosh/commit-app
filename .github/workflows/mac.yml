@@ -5,12 +5,16 @@ on:
     branches:
       - develop
 
+env:
+  KP: ${{ secrets.KP }}
+
 jobs:
   build-macos:
     runs-on: macos-latest
     steps:
       - name: Install the Apple certificate and provisioning profile
         run: |
+          security create-keychain -p "$KP" build.keychain
           cd ~/Library/Keychains/
           ls -la
           #mkdir -p ~/Library/MobileDevice/Provisioning\ Profiles
