@@ -19,7 +19,7 @@ jobs:
           ls -la
           pwd
           mkdir test
-          cd test && mkdir test2 && cd
+          cd test && mkdir test2 && cd ..
           ls -la
           pwd
           #security create-keychain -p "$KP" build.keychain
