@@ -13,7 +13,7 @@ jobs:
       
       - name: Clone Repo
         run: |
-          dir \
+          dir \a\commit-app
           pwd
           mkdir backend-app
-          dir \
+          dir \a\commit-app
