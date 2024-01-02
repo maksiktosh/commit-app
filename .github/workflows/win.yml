@@ -15,6 +15,7 @@ jobs:
         run: |
           mkdir backend-app\front
           cd backend-app
-          dir \a\commit-app\commit-app
+          dir \a\commit-app\commit-app\backend-app
           cd front
           cd ..\..
+          cd backend-app
