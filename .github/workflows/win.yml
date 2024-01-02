@@ -1,0 +1,18 @@
+name: "Build Windows Application"
+
+on:
+  push:
+    branches:
+      - windows
+
+jobs:
+  build-windows:
+    runs-on:
+      - windows-latest
+    steps:
+      
+      - name: Clone Repo
+        run: |
+          dir /a
+          cd
+          #mkdir C:\backend-app
