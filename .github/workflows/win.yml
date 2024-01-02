@@ -14,5 +14,5 @@ jobs:
       - name: Clone Repo
         run: |
           mkdir backend-app\front
-          cd backend-app
-          dir ~\backend-app
+          #cd backend-app
+          dir \a\commit-app\commit-app\backend-app
