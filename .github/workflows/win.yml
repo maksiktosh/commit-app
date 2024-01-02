@@ -15,8 +15,11 @@ jobs:
         run: |
           #dir \a\commit-app\commit-app
           pwd
+          
           dir
+          
           mkdir backend-app
+          
           cd backend-app
           dir
           #dir \a\commit-app\commit-app
