@@ -14,5 +14,5 @@ jobs:
       - name: Clone Repo
         run: |
           dir /a
-          cd
+          echo %cd%
           #mkdir C:\backend-app
