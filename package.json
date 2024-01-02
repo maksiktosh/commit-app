@@ -1,0 +1,155 @@
+{
+  "name": "fanscrm",
+  "version": "1.0.100-test-windows",
+  "description": "FansCRM application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./tools/start.js",
+    "dev": "node ./tools/dev.js",
+    "clean": "node ./tools/clean-dist",
+    "build": "npm -s run clean&&tsc",
+    "build:mac": "npm run build:mac-artifact;./node_modules/.bin/electron-installer-dmg ../builds/artifacts/FansCRM-darwin-x64/FansCRM.app FansCRM --out=../builds/installers/mac --icon=./icons/mac/app.icns --overwrite --prune",
+    "build:win": "npm run build:win-artifact&&npx electron-installer-windows --src=../builds/artifacts/FansCRM-win32-x64 FansCRM --dest=../builds/installers/win --arch=x64 --icon=./icons/win/app.ico --overwrite --prune",
+    "build:mac-artifact": "./node_modules/.bin/electron-packager . $npm_package_productName --app-version=$npm_package_version --platform=darwin --out=../builds/artifacts/ --icon=./icons/mac/app.icns --asar --overwrite --prune",
+    "build:win-artifact": "npx electron-packager . FansCRM --app-version=%npm_package_version% --platform=win32 --arch=x64 --out=../builds/artifacts/ --icon=./icons/win/app.ico --asar --overwrite --prune",
+    "build:debian": "npm run build:debian-artifact;./node_modules/.bin/electron-installer-debian --src=../builds/artifacts/FansCRM-linux-x64 FansCRM --dest=../builds/installers/linux --arch=amd64 --config=./icons/linux/config.json",
+    "build:debian-artifact": "./node_modules/.bin/electron-packager . $npm_package_productName --app-version=$npm_package_version --platform=linux --arch=x64 --out=../builds/artifacts/ --icon=./icons/linux/app.png --overwrite --prune",
+    "build:obfuscate-dist": "cd ./tools/dist-obfuscator&&npm run process",
+    "build:obfuscate-js": "cd ./tools/dist-obfuscator&&npm run process:js",
+    "build:obfuscate-central-content": "cd ./tools/dist-obfuscator&&npm run process:central-content",
+    "build:obfuscate-chat": "cd ./tools/dist-obfuscator&&npm run process:chat",
+    "build:obfuscate-left-menu": "cd ./tools/dist-obfuscator&&npm run process:left-menu",
+    "build:obfuscate-top-menu": "cd ./tools/dist-obfuscator&&npm run process:top-menu",
+    "release": "electron-builder -p always",
+    "release:mac": "electron-builder --mac -p always",
+    "release:win": "electron-builder --win -p always"
+  },
+  "author": "FansCRM Team",
+  "license": "ISC",
+  "build": {
+    "appId": "com.electron.fanscrm",
+    "productName": "FansCRM",
+    "afterSign": "./notarize.js",
+    "mac": {
+      "category": "public.app-category.business",
+      "target": [
+        "zip",
+        "dmg"
+      ],
+      "icon": "icons/mac/app.icns",
+      "hardenedRuntime": true,
+      "gatekeeperAssess": false,
+      "entitlements": "./entitlements.mac.plist",
+      "entitlementsInherit": "./entitlements.mac.plist",
+      "publish": {
+        "provider": "spaces",
+        "name": "fans-crm-app-s",
+        "region": "sfo3",
+        "acl": "public-read"
+      }
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "icons/win/app.png",
+      "signingHashAlgorithms": [
+        "sha256"
+      ],
+      "signAndEditExecutable": true,
+      "publisherName": "GlobalSign GCC R45 CodeSigning CA 2020"
+    },
+    "dmg": {
+      "sign": false
+    },
+    "nsis": {
+      "oneClick": true,
+      "artifactName": "${productName}-Setup.${version}.exe",
+      "publish": {
+        "provider": "spaces",
+        "name": "fans-crm-app-s",
+        "region": "sfo3",
+        "acl": "public-read"
+      }
+    },
+    "asar": true,
+    "directories": {
+      "output": "../builds/installers/"
+    },
+    "protocols": [
+      {
+        "name": "FansCRM",
+        "schemes": [
+          "fanscrm"
+        ]
+      }
+    ],
+    "files": [
+      "!electron-builder.env",
+      "!mac.env",
+      "!notarize.js",
+      "!entitlements.mac.plist"
+    ]
+  },
+  "devDependencies": {
+    "@electron/notarize": "^1.2.3",
+    "@types/base-64": "^1.0.0",
+    "@types/cors": "^2.8.12",
+    "@types/electron": "^1.6.10",
+    "@types/electron-json-storage": "^4.5.0",
+    "@types/express": "^4.17.14",
+    "@types/http-proxy": "^1.17.9",
+    "@types/lodash": "^4.14.194",
+    "@types/md5": "^2.3.2",
+    "@types/module-alias": "^2.0.1",
+    "@types/nanoid": "^3.0.0",
+    "@types/node": "^18.7.5",
+    "@types/node-rsa": "^1.1.1",
+    "@types/pubsub-js": "^1.8.6",
+    "electron": "^27.1.0",
+    "electron-builder": "^23.6.0",
+    "electron-installer-dmg": "^4.0.0",
+    "electron-installer-windows": "^3.0.0",
+    "electron-notarize": "^1.2.2",
+    "electron-packager": "^16.0.0",
+    "ts-node-dev": "^2.0.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.398.0",
+    "@bugsnag/js": "^7.20.2",
+    "assert": "^2.0.0",
+    "axios": "^0.27.2",
+    "base-64": "^1.0.0",
+    "child_process": "^1.0.2",
+    "country-locale-map": "^1.8.11",
+    "dns": "^0.2.2",
+    "dotenv": "^16.0.3",
+    "electron-json-storage": "^4.6.0",
+    "electron-log": "^4.4.8",
+    "electron-settings": "^4.0.2",
+    "electron-updater": "^5.3.0",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.0.0",
+    "graphql-tag": "^2.12.6",
+    "http": "^0.0.1-security",
+    "http-proxy": "^1.18.1",
+    "https": "^1.0.0",
+    "lodash": "^4.17.21",
+    "log-rotate": "^0.2.8",
+    "md5": "^2.3.0",
+    "module-alias": "^2.2.2",
+    "nanoid": "^3.3.4",
+    "net": "^1.0.2",
+    "node-rsa": "^1.1.1",
+    "path": "^0.12.7",
+    "pubsub-js": "^1.9.4",
+    "socket.io": "^4.5.3",
+    "socks-proxy-agent": "^7.0.0",
+    "typescript": "^4.7.4",
+    "url": "^0.11.0",
+    "util": "^0.12.5"
+  }
+}
